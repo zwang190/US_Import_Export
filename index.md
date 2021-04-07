@@ -6,6 +6,8 @@ by imports. In addition, in 2020, the covid outbreak impacted the world signific
     significant amount of domestic needs. The main goal of this project is to exhibit and analyze data from different aspects of international trade, providing a comprehensive analysis and description
 in order to assist audiences with understanding the current status of foreign trade activities.
  
+### Developer
+This project is developed by Zirong Wang 
  
 -----------
 You can use the [editor on GitHub](https://github.com/zwang190/us_import_export/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
