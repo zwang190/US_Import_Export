@@ -1,5 +1,13 @@
-## Welcome to GitHub Pages
+## U.S. Import/Export Data Exhibit and Analysis
 
+### Project Overview
+As the globalization is evolving and cooperation is being enhanced, countries are conducting foreign trades at daily basis in order to generate revenues via exports and satisfy domestic needs
+by imports. In addition, in 2020, the covid outbreak impacted the world significantly. The United States has been a critical role in the foreign trade as it has a gigantic market and
+    significant amount of domestic needs. The main goal of this project is to exhibit and analyze data from different aspects of international trade, providing a comprehensive analysis and description
+in order to assist audiences with understanding the current status of foreign trade activities.
+ 
+ 
+-----------
 You can use the [editor on GitHub](https://github.com/zwang190/us_import_export/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
