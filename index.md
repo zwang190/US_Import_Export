@@ -8,7 +8,9 @@ in order to assist audiences with understanding the current status of foreign tr
  
 ### Developer
 This project is developed by Zirong Wang 
- 
+
+### Link
+[editor on GitHub](https://github.com/zwang190/us_import_export/edit/gh-pages/main-page.html)
 -----------
 You can use the [editor on GitHub](https://github.com/zwang190/us_import_export/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
