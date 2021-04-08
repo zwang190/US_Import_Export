@@ -10,7 +10,8 @@ in order to assist audiences with understanding the current status of foreign tr
 This project is developed by Zirong Wang 
 
 ### Link
-[Main-Page](https://github.com/zwang190/us_import_export/main-page.html)
+[Main-Page](https://zwang190.github.io/us_import_export/main-page.html)
+
 -----------
 You can use the [editor on GitHub](https://github.com/zwang190/us_import_export/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
