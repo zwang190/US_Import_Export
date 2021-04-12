@@ -9,6 +9,9 @@ in order to assist audiences with understanding the current status of foreign tr
 ### Developer
 This project is developed by Zirong Wang 
 
+### Alpha Release
+[Open Here](alpha_report.pdf)
+
 ### Link
 [Main-Page](https://zwang190.github.io/us_import_export/main-page.html)
 
