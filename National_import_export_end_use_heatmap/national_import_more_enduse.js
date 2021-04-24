@@ -59,7 +59,7 @@ d3.csv("National_import_end_use_csv.csv", function (data) {
     }
     console.log("data_array " + data_array);
 
-    const margins = {top: 250, bottom: 40, left: 110, right: 0};
+    const margins = {top: 250, bottom: 40, left: 300, right: 0};
     var width = 900;
     var height = 400;
 
@@ -96,12 +96,13 @@ d3.csv("National_import_end_use_csv.csv", function (data) {
     var legend = d3.legendColor()
         .shapeHeight(50)
         .shapeWidth(50)
-        .shape(40)
+        .shape(90)
         .cells(15)
         .orient('horizontal')
         .scale(color_scale);
 
     svg.select(".legend")
+        .attr('transform', 'translate(350,150)')
         .call(legend);
 
     heatmap.append('g')
@@ -110,6 +111,36 @@ d3.csv("National_import_end_use_csv.csv", function (data) {
     heatmap.append('g')
         .attr('transform', 'translate(0,' + height + ')')
         .call(x_axis);
+
+    svg.append("text")
+        .attr('x', 490)
+        .attr("y", 130)
+        .text("Import at National Level Based on Ten End-use categories (Millions of Dollars)")
+        .attr('font-family','sans-serif');
+
+    let hover_on = function(d) {
+        d3.selectAll(".rect")
+            .transition()
+            .duration(200)
+
+        d3.select(this)
+            .transition()
+            .duration(200)
+            .style("fill", "green")
+    }
+
+    let hover_off = function(d) {
+        d3.selectAll(".rect")
+            .transition()
+            .duration(200)
+
+        d3.select(this)
+            .transition()
+            .duration(200)
+            .style("fill", function (d) {
+                return color_scale(d.value);
+            })
+    }
 
     heatmap.selectAll('rect')
         .data(data_array, function (d) {
@@ -127,7 +158,11 @@ d3.csv("National_import_end_use_csv.csv", function (data) {
         })
         .attr('fill', function (d) {
             return color_scale(d.value)
-        });
+        })
+        .on("mouseover", hover_on)
+        .on("mouseleave", hover_off)
+        .append("title")
+        .text(function(d) { return "Year: " + d.year + " " + " Value: " + d.value; });
 })
 
 //https://www.d3-graph-gallery.com/graph/heatmap_basic.html

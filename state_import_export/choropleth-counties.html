@@ -29,10 +29,10 @@
 
     // D3 Projection
     var projection = d3.geoAlbersUsa()
-        .translate([width / 2, height / 2]) // translate to center of screen
-        .scale([1000]); // scale things down so see entire US
+        .translate([width / 2, height / 2])
+        .scale([1000]);
 
-    // Define path generator
+
     var path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
         .projection(projection); // tell path generator to use albersUsa projection
 
@@ -41,6 +41,12 @@
         .append("svg")
         .attr("width", width)
         .attr("height", height);
+
+    svg.append("text")
+        .attr('x', 300)
+        .attr("y", 20)
+        .text("Foreign Trade Stat. of Import at State Level (Millions of Dollars)")
+        .attr('font-family','sans-serif');
 
     // Load in my states data!
     d3.csv("state_import_csv.csv", function(data) {

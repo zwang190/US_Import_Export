@@ -7,10 +7,10 @@ const years = ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '
 const y_labels = [];
 grand_data = new Map();
 
-let categories = ['Industrial Supplies', 'Capital Goods', 'Automotive Vehicles', 'Consumer Goods', 'Foods'];
+let categories = ['Industrial Supplies', 'Capital Goods', 'Automotive Vehicles', 'Consumer Goods', 'Foods', 'Other Goods'];
 
-var margin = {top: 100, right: 30, bottom: 30, left: 100},
-    width = 800 - margin.left - margin.right,
+var margin = {top: 140, right: 50, bottom: 30, left: 150},
+    width = 1000 - margin.left - margin.right,
     padding = 50;
     height = 600 - margin.top - margin.bottom;
 
@@ -21,7 +21,7 @@ d3.csv("Import_five_end_use.csv", function (data) {
 
     console.log(sumstat);
 
-    var svg = d3.select("#my_dataviz")
+    var svg = d3.select("body")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -49,12 +49,18 @@ d3.csv("Import_five_end_use.csv", function (data) {
         .domain(res)
         .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#f781bf'])
 
+    svg.append("text")
+        .attr('x',-150)
+        .attr("y", -10)
+        .text("Money flow (millions of dollars)")
+        .attr('font-family','sans-serif');
+
     var k = 1;
     var j = 0;
     var y_const = 25;
     var x_const = 150;
     var offset = 400;
-    var y_offset = 50;
+    var y_offset = 90;
     for (let i = 0; i < categories.length; i++) {
         var country = categories[i];
         svg.append("text").attr("x", j * x_const + padding + offset).attr("y", y_const * k - y_offset).style("font-size", "12px").attr("alignment-baseline", "middle").text(country);

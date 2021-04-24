@@ -1,11 +1,7 @@
 let grand_data = new Map()
-let sorted_map = new Map();
 let x_labels = ['2017', '2018', '2019', '2020'];
 let y_labels = [];
-
-const m = new Map([["California", "CA"], ["Texas", "TX"], ["New York", "NY"], ["Massachusetts", "MA"], ["Oregon", "OR"], ["Louisiana", "LA"], ["New Mexico", "NM"],
-    ["New Jersey", "NJ"], ["Pennsylvania", "PA"], ["North Dakota", "ND"], ["District of Columbia", "DC"]]);
-const states = ["California", "Texas", "New York", "Massachusetts", "Pennsylvania"];
+let tmp = -1;
 
 d3.csv("export_tx.csv", function (data) {
     for(let i = 0; i < data.length; i++) {
@@ -29,9 +25,9 @@ d3.csv("export_tx.csv", function (data) {
     }
     console.log(grand_data);
 
-    const margins = {top: 10, bottom: 40, left: 60, right: 50}
+    const margins = {top: 40, bottom: 40, left: 60, right: 70}
     var width = 400;
-    var height = 700;
+    var height = 800;
     var bar_padding = 7;
     var bar_width = (width / 4);
 
@@ -42,6 +38,12 @@ d3.csv("export_tx.csv", function (data) {
 
     var bar_chart = svg.append('g')
         .attr('transform', 'translate(' + margins.right + ',' + margins.top + ')');
+
+    svg.append("text")
+        .attr('x',0)
+        .attr("y", 30)
+        .text("Money flow (millions of dollars)")
+        .attr('font-family','sans-serif');
 
     var inner_list = grand_data.get('PROCESSORS AND CONTROLLERS, ELECTRONIC INTEGRATED');
 
@@ -78,17 +80,36 @@ d3.csv("export_tx.csv", function (data) {
         .attr('font-size', '10px')
         .attr('transform', 'translate(200,15)');
 
-    // svg.select(".legend")
-    //     .call(legend);
-
-    //draw x-axis
     bar_chart.append('g')
         .attr('transform', 'translate(0,' + height + ')')
         .call(x_axis);
 
-    //draw y-axis
     bar_chart.append('g')
         .call(y_axis);
+
+
+    let hover_on = function(d) {
+        d3.selectAll(".bar")
+            .transition()
+            .duration(200)
+
+        d3.select(this)
+            .transition()
+            .duration(200)
+            .style("stroke", "black")
+            .style('stroke-width', '3px')
+    }
+
+    let hover_off = function(d, i) {
+        d3.selectAll(".bar")
+            .transition()
+            .duration(200)
+
+        d3.select(this)
+            .transition()
+            .duration(200)
+            .style("stroke", "white")
+    }
 
     bar_chart.selectAll('.bar')
         .data(y_labels)
@@ -115,5 +136,9 @@ d3.csv("export_tx.csv", function (data) {
             } else if(i === 3){
                 return color_scale('2020');
             }
-        });
+        })
+        .on("mouseover", hover_on)
+        .on("mouseleave", hover_off)
+        .append("title")
+        .text(function(d) { return d; });
 })
