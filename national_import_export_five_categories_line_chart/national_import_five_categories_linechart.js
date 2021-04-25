@@ -10,7 +10,7 @@ grand_data = new Map();
 let categories = ['Industrial Supplies', 'Capital Goods', 'Automotive Vehicles', 'Consumer Goods', 'Foods', 'Other Goods'];
 
 var margin = {top: 140, right: 50, bottom: 30, left: 150},
-    width = 1000 - margin.left - margin.right,
+    width = 1300 - margin.left - margin.right,
     padding = 50;
     height = 600 - margin.top - margin.bottom;
 
@@ -85,6 +85,52 @@ d3.csv("Import_five_end_use.csv", function (data) {
                 .y(function(d) { return y(+d.Value); })
                 (d.values)
         })
+
+    let hover_on = function(d) {
+        d3.selectAll(".line")
+            .transition()
+            .duration(200)
+
+        d3.select(this)
+            .transition()
+            .duration(200)
+            .style("stroke", "blue")
+            .style('stroke-width', '3px')
+    }
+
+    let hover_off = function(d) {
+        d3.selectAll(".line")
+            .transition()
+            .duration(200)
+
+        d3.select(this)
+            .transition()
+            .duration(200)
+            .style("stroke", function (d) {
+                return color(d.Categories)
+            })
+    }
+
+    svg.selectAll(".line")
+        .append("g")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("r", 6)
+        .attr("cx", d => x(d.Period))
+        .attr("cy", d => y(+ d.Value))
+        .style("fill", d => color(d.Categories))
+        .on("mouseover", hover_on)
+        .on("mouseleave", hover_off)
+        .append("title")
+        .text(function(d) { return d.Categories + ". Year: " + d.Period + "  Value: " + d.Value; });
+
+    var ver_offset = 30;
+    svg.append("text")
+        .attr('x',1280 - margin.left - margin.right)
+        .attr("y", height + ver_offset)
+        .text("Year")
+        .attr('font-family','sans-serif');
 
 })
 

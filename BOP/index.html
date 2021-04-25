@@ -10,6 +10,7 @@
         height = 700 - margin.top - margin.bottom;
 
     var padding = 50;
+    const num_yaers = 40;
 
     var svg = d3.select("body")
         .append("svg")
@@ -37,13 +38,22 @@
             .entries(data);
 
         console.log(sumstat)
+        var new_data_set = []
+        for(let idx of sumstat.keys()){
+            var inner_map = sumstat[idx];
+            var inner_list = inner_map.values;
+            var key = inner_map.key;
+            inner_list = inner_list.slice(40);
+            new_data_set.push({key: key, values: inner_list});
+        }
+        var years = new_data_set[0];
 
         var x = d3.scaleLinear()
-            .domain(d3.extent(data, function(d) { return d.Year; }))
+            .domain(d3.extent(years.values, function(d) { return d.Year; }))
             .range([ 0, width ]);
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x).ticks(30));
+            .call(d3.axisBottom(x).ticks(15));
 
         var y = d3.scaleLinear()
             .domain([0, d3.max(data, function(d) { return +d.Total; })])
@@ -81,6 +91,8 @@
             d3.select(this)
                 .transition()
                 .duration(200)
+                .style("stroke", "blue")
+                .style('stroke-width', '3px')
         }
 
         let hover_off = function(d) {
@@ -91,10 +103,19 @@
             d3.select(this)
                 .transition()
                 .duration(200)
+                .style("stroke", function (d) {
+                    return color(d.Category)
+                })
         }
 
+        var circle_dataset = []
+        console.log(new_data_set)
+        for(let i = 0; i < new_data_set.length; i++){
+            circle_dataset.push(...new_data_set[i].values)
+        }
+        console.log(circle_dataset)
         svg.selectAll(".line")
-            .data(sumstat)
+            .data(new_data_set)
             .enter()
             .append("path")
             .attr("fill", "none")
@@ -108,6 +129,27 @@
                     .y(function(d) { return y(+d.Total); })
                     (d.values)
             })
+
+        svg.selectAll(".line")
+            .append("g")
+            .data(circle_dataset)
+            .enter()
+            .append("circle")
+            .attr("r", 6)
+            .attr("cx", d => x(d.Year))
+            .attr("cy", d => y(+ d.Total))
+            .style("fill", d => color(d.Category))
+            .on("mouseover", hover_on)
+            .on("mouseleave", hover_off)
+            .append("title")
+            .text(function(d) { return d.Category + ". Year: " + d.Year + "  Value: " + d.Total; });
+
+        var y_offset = 30
+        svg.append("text")
+            .attr('x',1180 - margin.left - margin.right)
+            .attr("y", height + y_offset)
+            .text("Year")
+            .attr('font-family','sans-serif');
     })
 
 </script>
