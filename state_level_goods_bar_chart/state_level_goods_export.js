@@ -141,4 +141,12 @@ d3.csv("export_tx.csv", function (data) {
         .on("mouseleave", hover_off)
         .append("title")
         .text(function(d) { return d; });
+
+    var ver_offset = 60;
+    var hor_offset = 60;
+    svg.append("text")
+        .attr('x',width + hor_offset)
+        .attr("y", height + ver_offset)
+        .text("Year")
+        .attr('font-family','sans-serif');
 })

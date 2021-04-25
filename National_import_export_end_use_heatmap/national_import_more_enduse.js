@@ -163,6 +163,14 @@ d3.csv("National_import_end_use_csv.csv", function (data) {
         .on("mouseleave", hover_off)
         .append("title")
         .text(function(d) { return "Year: " + d.year + " " + " Value: " + d.value; });
+
+    var ver_offset = 290;
+    var hor_offset = 260;
+    svg.append("text")
+        .attr('x',width + hor_offset)
+        .attr("y", height + ver_offset)
+        .text("Year")
+        .attr('font-family','sans-serif');
 })
 
 //https://www.d3-graph-gallery.com/graph/heatmap_basic.html
