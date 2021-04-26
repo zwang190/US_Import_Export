@@ -163,7 +163,7 @@ d3.csv("National_import_export_end_use_heatmap/National_import_end_use_csv.csv",
         .on("mouseover", hover_on)
         .on("mouseleave", hover_off)
         .append("title")
-        .text(function(d) { return "Year: " + d.year + " " + " Value: " + d.value; });
+        .text(function(d) { return "Year: " + d.year + " " + " Value: " + d3.format("$,")(d.value); });
 
     var ver_offset = 290;
     var hor_offset = 260;

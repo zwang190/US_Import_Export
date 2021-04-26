@@ -101,7 +101,7 @@ d3.csv("BOP/historical_bop_total.csv", function(data) {
         .on("mouseover", hover_on)
         .on("mouseleave", hover_off)
         .append("title")
-        .text(function(d) { return d.Total; });
+        .text(function(d) { return d3.format("$,")(d.Total); });
 
     total_line_chart_svg.append("text")
         .attr('x',1180 - margin.left - margin.right)

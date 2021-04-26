@@ -133,7 +133,7 @@ d3.csv("./BOP/historical_BOP1.csv", function(data) {
         .on("mouseover", hover_on)
         .on("mouseleave", hover_off)
         .append("title")
-        .text(function(d) { return d.Category + ". Year: " + d.Year + "  Value: " + d.Total; });
+        .text(function(d) { return d.Category + ". Year: " + d.Year + "  Value: " + d3.format("$,")(d.Total); });
 
     var ver_offset = 30
     line_chart_ie.append("text")

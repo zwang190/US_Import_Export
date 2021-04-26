@@ -115,7 +115,7 @@ d3.csv("national_import_export_five_categories_line_chart/Import_five_end_use.cs
         .on("mouseover", hover_on)
         .on("mouseleave", hover_off)
         .append("title")
-        .text(function(d) { return d.Categories + ". Year: " + d.Period + "  Value: " + d.Value; });
+        .text(function(d) { return d.Categories + ". Year: " + d.Period + "  Value: " + d3.format("$,")(d.Value); });
 
     var ver_offset = 30;
     svg.append("text")

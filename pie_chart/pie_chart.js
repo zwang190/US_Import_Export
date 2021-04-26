@@ -94,7 +94,13 @@ d3.csv("pie_chart/ca_export_csv.csv", function(error, data) {
         .attr("fill", function(d) { return pie_color(d.data.name); }).on("mouseover", hover_on)
         .on("mouseleave", hover_off)
         .append("title")
-        .text(function(d) { return "Name: " + d.data.name + " " + " Share: " + d.data.share; });
+        .text(function(d) { return "Name: " + d.data.name + " " + " Share: " + d3.format(".0%")(d.data.share); });
+
+    arc.append("text")
+        .attr("transform", function(d) {
+            return "translate(" + label.centroid(d) + ")";
+        })
+        .text(function(d) { return d3.format(".0%")(d.data.share); });
 
     var legendRectSize = (radius * 0.06);
     var legendSpacing = radius * 0.05;

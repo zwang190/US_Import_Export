@@ -142,7 +142,7 @@ d3.csv("state_level_goods_bar_chart/export_tx.csv", function (data) {
         .on("mouseover", hover_on)
         .on("mouseleave", hover_off)
         .append("title")
-        .text(function(d) { return d; });
+        .text(function(d) { return d3.format("$,")(d); });
 
     var ver_offset = 60;
     var hor_offset = 60;

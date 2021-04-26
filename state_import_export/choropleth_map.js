@@ -101,7 +101,7 @@ d3.csv("state_import_export/state_import_csv.csv", function(data) {
 
             .style("fill", function(d) { return ramp(d.properties.value) })
             .append("title")
-            .text(function(d) { return d.properties.name + ': ' + d.properties.value; });
+            .text(function(d) { return d.properties.name + ': ' + d3.format("$,")(d.properties.value); });
 
         // add a legend
         var w = 140, h = 300;
