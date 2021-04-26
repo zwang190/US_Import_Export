@@ -1,31 +1,32 @@
-const num_yaers = 40;
+d3.csv("BOP/historical_bop_total.csv", function(data) {
+    const num_yaers = 40;
 
-var margin = {top: 80, right: 30, bottom: 30, left: 60},
-    width = 1200 - margin.left - margin.right,
-    height = 800 - margin.top - margin.bottom;
+    var margin = {top: 80, right: 30, bottom: 30, left: 60},
+        width = 1200 - margin.left - margin.right,
+        height = 800 - margin.top - margin.bottom;
 
 
-var svg = d3.select("body")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+    var total_line_chart_svg = d3.select("body")
+        .select("#my_dataviz_total")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
 
-svg.append("text")
-    .attr('x',-50)
-    .attr("y", -10)
-    .text("Millions of Dollars")
-    .attr('font-family','sans-serif');
+    total_line_chart_svg.append("text")
+        .attr('x',-50)
+        .attr("y", -10)
+        .text("Millions of Dollars")
+        .attr('font-family','sans-serif');
 
-svg.append("text")
-    .attr('x',400)
-    .attr("y", -10)
-    .text("Balance of Payments")
-    .attr('font-family','sans-serif');
+    total_line_chart_svg.append("text")
+        .attr('x',400)
+        .attr("y", -10)
+        .text("Balance of Payments")
+        .attr('font-family','sans-serif');
 
-d3.csv("./BOP/historical_bop_total.csv", function(data) {
     data = data.slice(num_yaers);
     var sumstat = d3.nest()
         .key(function(d) { return d.Category;})
@@ -34,14 +35,14 @@ d3.csv("./BOP/historical_bop_total.csv", function(data) {
     var x = d3.scaleLinear()
         .domain(d3.extent(data, function(d) { return d.Year; }))
         .range([ 0, width ]);
-    svg.append("g")
+    total_line_chart_svg.append("g")
         .attr("transform", "translate(0," + height / 2 + ")")
         .call(d3.axisBottom(x).ticks(20));
 
     var y = d3.scaleLinear()
         .domain([0 - d3.max(data, function(d) { return Math.abs(+ d.Total); }), d3.max(data, function(d) { return Math.abs(+ d.Total); })])
         .range([ height, 0 ]);
-    svg.append("g")
+    total_line_chart_svg.append("g")
         .call(d3.axisLeft(y).ticks(30));
 
     var res = sumstat.map(function(d){ return d.key })
@@ -49,7 +50,7 @@ d3.csv("./BOP/historical_bop_total.csv", function(data) {
         .domain(res)
         .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
 
-    svg.selectAll(".line")
+    total_line_chart_svg.selectAll(".line")
         .data(sumstat)
         .enter()
         .append("path")
@@ -88,7 +89,7 @@ d3.csv("./BOP/historical_bop_total.csv", function(data) {
             })
     }
 
-    svg.selectAll(".line")
+    total_line_chart_svg.selectAll(".line")
         .append("g")
         .data(data)
         .enter()
@@ -102,7 +103,7 @@ d3.csv("./BOP/historical_bop_total.csv", function(data) {
         .append("title")
         .text(function(d) { return d.Total; });
 
-    svg.append("text")
+    total_line_chart_svg.append("text")
         .attr('x',1180 - margin.left - margin.right)
         .attr("y", 490 - margin.top - margin.bottom)
         .text("Year")

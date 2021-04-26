@@ -1,31 +1,31 @@
-var margin = {top: 100, right: 30, bottom: 30, left: 90},
-    width = 1200 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
-
-var padding = 50;
-
-var line_chart_ie = d3.select("body")
-    .select("#my_dataviz_import_export_line")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
-
-line_chart_ie.append("text")
-    .attr('x',-70)
-    .attr("y", -10)
-    .text("Money flow (millions of dollars)")
-    .attr('font-family','sans-serif');
-
-line_chart_ie.append("text")
-    .attr('x',400)
-    .attr("y", -10)
-    .text("National Balance of Payment (Import/Export)")
-    .attr('font-family','sans-serif');
-
 d3.csv("./BOP/historical_BOP1.csv", function(data) {
+    var margin = {top: 100, right: 30, bottom: 30, left: 90},
+        width = 1200 - margin.left - margin.right,
+        height = 700 - margin.top - margin.bottom;
+
+    var padding = 50;
+
+    var line_chart_ie = d3.select("body")
+        .select("#my_dataviz_import_export_line")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    line_chart_ie.append("text")
+        .attr('x',-70)
+        .attr("y", -10)
+        .text("Money flow (millions of dollars)")
+        .attr('font-family','sans-serif');
+
+    line_chart_ie.append("text")
+        .attr('x',400)
+        .attr("y", -10)
+        .text("National Balance of Payment (Import/Export)")
+        .attr('font-family','sans-serif');
+
     var sumstat = d3.nest()
         .key(function(d) { return d.Category;})
         .entries(data);
@@ -114,8 +114,6 @@ d3.csv("./BOP/historical_BOP1.csv", function(data) {
         .attr("fill", "none")
         .attr("stroke", function(d){ return color(d.key) })
         .attr("stroke-width", 1.5)
-        .on("mouseover", hover_on)
-        .on("mouseleave", hover_off)
         .attr("d", function(d){
             return d3.line()
                 .x(function(d) { return x(d.Year); })
