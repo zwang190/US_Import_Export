@@ -20,35 +20,37 @@
 <script src="https://d3js.org/queue.v1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.13.0/d3-legend.js"></script>
 <script>
-    //https://gist.github.com/wboykinm/dbbe50d1023f90d4e241712395c27fb3
-    var width = 960;
-    var height = 500;
 
-    var lowColor = 'lightgrey'
-    var highColor = '#bc2a66'
-
-    // D3 Projection
-    var projection = d3.geoAlbersUsa()
-        .translate([width / 2, height / 2])
-        .scale([1000]);
-
-    var path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
-        .projection(projection); // tell path generator to use albersUsa projection
-
-    //Create SVG element and append map to the SVG
-    var svg = d3.select("body")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height);
-
-    svg.append("text")
-        .attr('x', 300)
-        .attr("y", 20)
-        .text("Foreign Trade Stat. of Import at State Level (Millions of Dollars)")
-        .attr('font-family','sans-serif');
 
     // Load in my states data!
     d3.csv("state_import_csv.csv", function(data) {
+        var choropleth_map_width = 960;
+        var choropleth_map_height = 500;
+
+        var lowColor = 'lightgrey'
+        var highColor = '#bc2a66'
+
+// D3 Projection
+        var projection = d3.geoAlbersUsa()
+            .translate([choropleth_map_width / 2, choropleth_map_height / 2])
+            .scale([1000]);
+
+
+        var path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
+            .projection(projection); // tell path generator to use albersUsa projection
+
+//Create SVG element and append map to the SVG
+        var choropleth_map_svg = d3.select("body")
+            .append("svg")
+            .attr("width", choropleth_map_width)
+            .attr("height", choropleth_map_height);
+
+        choropleth_map_svg.append("text")
+            .attr('x', 300)
+            .attr("y", 20)
+            .text("Foreign Trade Stat. of Import at State Level (Millions of Dollars)")
+            .attr('font-family','sans-serif');
+
         var dataArray = [];
         for (var d = 0; d < data.length; d++) {
             dataArray.push(parseFloat(data[d]['Value_2017']))
@@ -108,7 +110,7 @@
             }
 
             // Bind the data to the SVG and create one path per GeoJSON feature
-            svg.selectAll("path")
+            choropleth_map_svg.selectAll("path")
                 .data(json.features)
                 .enter()
                 .append("path")
@@ -131,7 +133,7 @@
                 .attr("height", h)
                 .attr("class", "legend");
 
-            var legend = key.append("defs")
+            var choropleth_map_legend = key.append("defs")
                 .append("svg:linearGradient")
                 .attr("id", "gradient")
                 .attr("x1", "100%")
@@ -140,12 +142,12 @@
                 .attr("y2", "100%")
                 .attr("spreadMethod", "pad");
 
-            legend.append("stop")
+            choropleth_map_legend.append("stop")
                 .attr("offset", "0%")
                 .attr("stop-color", highColor)
                 .attr("stop-opacity", 1);
 
-            legend.append("stop")
+            choropleth_map_legend.append("stop")
                 .attr("offset", "100%")
                 .attr("stop-color", lowColor)
                 .attr("stop-opacity", 1);

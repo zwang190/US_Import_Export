@@ -5,7 +5,7 @@ let y_labels = [];
 const data_nums = 10;
 const years = ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'];
 
-d3.csv("National_import_end_use_csv.csv", function (data) {
+d3.csv("National_import_export_end_use_heatmap/National_import_end_use_csv.csv", function (data) {
     for (let i = 0; i < data.length; i++) {
         if (data[i].Name === 'TOTAL') {
             break;
@@ -64,6 +64,7 @@ d3.csv("National_import_end_use_csv.csv", function (data) {
     var height = 400;
 
     var svg = d3.select('body')
+        .select("#heat_map")
         .append('svg')
         .attr('width', width + margins.left + margins.right)
         .attr('height', height + margins.top + margins.bottom);

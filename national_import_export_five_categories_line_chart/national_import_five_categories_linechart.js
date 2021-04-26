@@ -1,20 +1,11 @@
-let grand_data;
-let data_array = []
-
-const m = new Map([["California", "CA"], ["Texas", "TX"], ["New York", "NY"], ["Massachusetts", "MA"], ["Oregon", "OR"], ["Louisiana", "LA"], ["New Mexico", "NM"],
-    ["New Jersey", "NJ"], ["Pennsylvania", "PA"], ["North Dakota", "ND"]]);
-const years = ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'];
-const y_labels = [];
-grand_data = new Map();
-
 let categories = ['Industrial Supplies', 'Capital Goods', 'Automotive Vehicles', 'Consumer Goods', 'Foods', 'Other Goods'];
 
 var margin = {top: 140, right: 50, bottom: 30, left: 150},
     width = 1300 - margin.left - margin.right,
     padding = 50;
-    height = 600 - margin.top - margin.bottom;
+    choropleth_map_height = 600 - margin.top - margin.bottom;
 
-d3.csv("Import_five_end_use.csv", function (data) {
+d3.csv("national_import_export_five_categories_line_chart/Import_five_end_use.csv", function (data) {
     var sumstat = d3.nest()
         .key(function(d) { return d.Categories;})
         .entries(data);
@@ -22,9 +13,10 @@ d3.csv("Import_five_end_use.csv", function (data) {
     console.log(sumstat);
 
     var svg = d3.select("body")
+        .select("#line_chart2")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("height", choropleth_map_height + margin.top + margin.bottom)
         .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
@@ -33,14 +25,14 @@ d3.csv("Import_five_end_use.csv", function (data) {
         .domain(d3.extent(data, function(d) { return d.Period; }))
         .range([ 0, width ]);
     svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + choropleth_map_height + ")")
         .call(d3.axisBottom(x).ticks(20));
 
 
     // Add Y axis
     var y = d3.scaleLinear()
         .domain([0, d3.max(data, function(d) { return + d.Value; })])
-        .range([ height, 0 ]);
+        .range([ choropleth_map_height, 0 ]);
     svg.append("g")
         .call(d3.axisLeft(y).ticks(50));
 
@@ -128,7 +120,7 @@ d3.csv("Import_five_end_use.csv", function (data) {
     var ver_offset = 30;
     svg.append("text")
         .attr('x',1280 - margin.left - margin.right)
-        .attr("y", height + ver_offset)
+        .attr("y", choropleth_map_height + ver_offset)
         .text("Year")
         .attr('font-family','sans-serif');
 

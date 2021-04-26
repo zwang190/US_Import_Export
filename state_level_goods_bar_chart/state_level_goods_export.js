@@ -1,9 +1,11 @@
-let grand_data = new Map()
-let x_labels = ['2017', '2018', '2019', '2020'];
-let y_labels = [];
-let tmp = -1;
 
-d3.csv("export_tx.csv", function (data) {
+
+d3.csv("state_level_goods_bar_chart/export_tx.csv", function (data) {
+    let grand_data = new Map()
+    let x_labels = ['2017', '2018', '2019', '2020'];
+    let y_labels = [];
+    let tmp = -1;
+
     for(let i = 0; i < data.length; i++) {
         console.log(data[i]['rank']);
         if(data[i]['rank'] == -1 || data[i]['rank'] == 0) {
@@ -31,15 +33,15 @@ d3.csv("export_tx.csv", function (data) {
     var bar_padding = 7;
     var bar_width = (width / 4);
 
-    var svg = d3.select('body')
+    var bar_svg = d3.select('body').select("#bar_chart")
         .append('svg')
         .attr('width', width + margins.left + margins.right)
         .attr('height', height + margins.top + margins.bottom);
 
-    var bar_chart = svg.append('g')
+    var bar_chart = bar_svg.append('g')
         .attr('transform', 'translate(' + margins.right + ',' + margins.top + ')');
 
-    svg.append("text")
+    bar_svg.append("text")
         .attr('x',0)
         .attr("y", 30)
         .text("Money flow (millions of dollars)")
@@ -54,7 +56,7 @@ d3.csv("export_tx.csv", function (data) {
 
     console.log(y_labels);
 
-    var color_scale =
+    var bar_color_scale =
         d3.scaleOrdinal(d3.schemeCategory10).domain(['2017', '2018', '2019', '2020']);
 
     var x_scale = d3.scaleBand()
@@ -73,9 +75,9 @@ d3.csv("export_tx.csv", function (data) {
         .shapeWidth(50)
         .shape(40)
         .orient('horizontal')
-        .scale(color_scale);
+        .scale(bar_color_scale);
 
-    svg.append("g")
+    bar_svg.append("g")
         .attr("class", "legend")
         .attr('font-size', '10px')
         .attr('transform', 'translate(200,15)');
@@ -128,13 +130,13 @@ d3.csv("export_tx.csv", function (data) {
         })
         .attr('fill', function (d, i) {
             if (i === 0) {
-                return color_scale('2017');
+                return bar_color_scale('2017');
             } else if(i === 1) {
-                return color_scale('2018');
+                return bar_color_scale('2018');
             } else if (i === 2) {
-                return color_scale('2019');
+                return bar_color_scale('2019');
             } else if(i === 3){
-                return color_scale('2020');
+                return bar_color_scale('2020');
             }
         })
         .on("mouseover", hover_on)
@@ -144,7 +146,7 @@ d3.csv("export_tx.csv", function (data) {
 
     var ver_offset = 60;
     var hor_offset = 60;
-    svg.append("text")
+    bar_svg.append("text")
         .attr('x',width + hor_offset)
         .attr("y", height + ver_offset)
         .text("Year")
