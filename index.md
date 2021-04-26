@@ -12,6 +12,9 @@ This project is developed by Zirong Wang
 ### Alpha Release
 [Open Here](alpha_report.pdf)
 
+### Beta Release
+[Video Here](https://drive.google.com/file/d/1T3Ak1aBE4t9Y2mJ7pSdPAZ3brm0Ttwst/view?usp=sharing)
+
 ### Link
 [Main-Page](https://zwang190.github.io/us_import_export/main-page.html)
 
