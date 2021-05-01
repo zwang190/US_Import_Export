@@ -1,6 +1,11 @@
-
 d3.csv("pie_chart/ca_export_csv.csv", function(error, data) {
-    var pie_svg = d3.select("body").select("#pie_chart").select("svg"),
+    d3.select('#dropdown_menu').select("#menu")
+        .on('change', function() {
+            var newData = this.value;
+            console.log(newData)
+    });
+
+    var pie_svg = d3.select("body").select("#dropdown_menu").select("#pie_chart").select("svg"),
         width = pie_svg.attr("width"),
         height = pie_svg.attr("height"),
         radius = 250;
@@ -35,22 +40,17 @@ d3.csv("pie_chart/ca_export_csv.csv", function(error, data) {
             total_2020 = parseInt(data[i].Value2020);
         }
     }
-    console.log(new_data);
-    console.log(total_2020);
+
     new_data.sort(function (a, b) {
         return b.value - a.value;
     })
 
     new_data = new_data.slice(0, 5);
-    console.log(new_data);
-
     var data_set = [];
     for(let i = 0; i < new_data.length; i++){
         var share2020 = new_data[i].value / total_2020;
         data_set.push({name: data[i]['Description'], share: share2020})
     }
-
-    console.log(data_set);
 
     var total_share = 0;
     for(let i = 0 ; i < data_set.length; i++){
