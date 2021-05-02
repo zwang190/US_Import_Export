@@ -105,9 +105,6 @@ function create_pie_chart(input_year, input_category, div, svg_id) {
                 inner_inner_map_total.set("2020", data[i]['Value2020']);
             }
         }
-        // console.log("pie chart data: ")
-        console.log(grand_data)
-        console.log(grand_data_total)
 
         var new_data = [];
         var total_value = 0;
@@ -137,20 +134,17 @@ function create_pie_chart(input_year, input_category, div, svg_id) {
         console.log("total vlaue " + total_value)
 
         new_data = new_data.slice(0, 5);
-        console.log(new_data);
         var data_set = [];
         for (let i = 0; i < new_data.length; i++) {
             var cur_share = new_data[i].value / total_value;
             data_set.push({name: new_data[i].name, share: cur_share})
         }
-        console.log(data_set);
 
         var total_share = 0;
         for (let i = 0; i < data_set.length; i++) {
             total_share += +data_set[i].share;
         }
         data_set.push({name: 'Other Goods', share: 1 - total_share});
-        console.log(data_set);
 
         let hover_on = function (d) {
             d3.selectAll(".arc")

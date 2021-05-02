@@ -1,5 +1,3 @@
-
-
 d3.csv("state_level_goods_bar_chart/export_tx.csv", function (data) {
     let grand_data = new Map()
     let x_labels = ['2017', '2018', '2019', '2020'];
