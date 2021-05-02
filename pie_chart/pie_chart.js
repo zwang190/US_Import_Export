@@ -1,35 +1,43 @@
+import {create_bar_chart} from '../state_level_goods_bar_chart/state_level_goods_export.js'
+
 let default_state = 'CA';
 d3.select('#dropdown_menu').select("#menu")
     .on('change', function () {
         default_state = this.value;
-        console.log(default_state);
-        d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2017").select("svg").remove();
-        d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2018").select("svg").remove();
-        d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2019").select("svg").remove();
-        d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2020").select("svg").remove();
-        create_pie_chart("2017", default_category, "#pie_chart_2017", "#pie1");
-        create_pie_chart("2018", default_category, "#pie_chart_2018", "#pie2");
-        create_pie_chart("2019", default_category, "#pie_chart_2019", "#pie3");
-        create_pie_chart("2020", default_category, "#pie_chart_2020", "#pie4");
+        update_graph();
     });
 
 let default_category = 'Import';
 d3.select('#dropdown_menu').select("#category_menu")
     .on('change', function () {
         default_category = this.value;
-        console.log(default_category);
-        d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2017").select("svg").remove();
-        d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2018").select("svg").remove();
-        d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2019").select("svg").remove();
-        d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2020").select("svg").remove();
-        create_pie_chart("2017", default_category, "#pie_chart_2017", "#pie1");
-        create_pie_chart("2018", default_category, "#pie_chart_2018", "#pie2");
-        create_pie_chart("2019", default_category, "#pie_chart_2019", "#pie3");
-        create_pie_chart("2020", default_category, "#pie_chart_2020", "#pie4");
+        update_graph();
     });
 
-function create_pie_chart(input_year, input_category, div, svg_id) {
-    d3.csv("pie_chart/ca_export_csv.csv", function (error, data) {
+function update_graph(){
+    d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2017").select("svg").remove();
+    d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2018").select("svg").remove();
+    d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2019").select("svg").remove();
+    d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2020").select("svg").remove();
+
+    d3.select("body").select("#dropdown_menu").select("#bar_chart").select("#bar_chart_2017").select("svg").remove();
+    d3.select("body").select("#dropdown_menu").select("#bar_chart").select("#bar_chart_2018").select("svg").remove();
+    d3.select("body").select("#dropdown_menu").select("#bar_chart").select("#bar_chart_2019").select("svg").remove();
+    d3.select("body").select("#dropdown_menu").select("#bar_chart").select("#bar_chart_2020").select("svg").remove();
+
+    create_pie_chart("2017", default_category, "#pie_chart_2017");
+    create_pie_chart("2018", default_category, "#pie_chart_2018");
+    create_pie_chart("2019", default_category, "#pie_chart_2019");
+    create_pie_chart("2020", default_category, "#pie_chart_2020");
+
+    create_bar_chart(default_state, "2017", default_category, "#bar_chart_2017", 0);
+    create_bar_chart(default_state, "2018", default_category, "#bar_chart_2018", 1);
+    create_bar_chart(default_state, "2019", default_category, "#bar_chart_2019", 2);
+    create_bar_chart(default_state, "2020", default_category, "#bar_chart_2020", 3);
+}
+
+function create_pie_chart(input_year, input_category, div) {
+    d3.csv("./pie_chart/ca_export_csv.csv", function (error, data) {
 
        var pie_svg = d3.select("body").select("#dropdown_menu").select("#pie_chart").select(div).append("svg");
        pie_svg.attr('width', 900)
@@ -111,10 +119,8 @@ function create_pie_chart(input_year, input_category, div, svg_id) {
 
         inner_map = grand_data.get(default_state);
         inner_list = inner_map.get(input_category);
-        console.log("pie chart")
-        console.log(inner_list)
+
         for (let i = 0; i < inner_list.length; i++) {
-            // new_data.push({name: inner_list[i].name, value: +inner_list[i].value2017})
             if(input_year === '2017'){
                 new_data.push({name: inner_list[i].name, value: inner_list[i].value2017})
             } else if(input_year === '2018'){
@@ -131,7 +137,6 @@ function create_pie_chart(input_year, input_category, div, svg_id) {
         })
 
         total_value = grand_data_total.get(default_state).get(input_category).get(input_year);
-        console.log("total vlaue " + total_value)
 
         new_data = new_data.slice(0, 5);
         var data_set = [];
@@ -174,7 +179,6 @@ function create_pie_chart(input_year, input_category, div, svg_id) {
             .data(pie(data_set))
             .enter().append("g")
             .attr("class", "arc")
-
 
         arc.append("path")
             .attr("d", path)
@@ -229,7 +233,6 @@ function create_pie_chart(input_year, input_category, div, svg_id) {
             .style('stroke', function (d) {
                 return pie_color(d.name)
             });
-
 
         pie_chart_legend.append('text')
             .attr('x', legendRectSize + legendSpacing + 10 + offset_legend_text)
