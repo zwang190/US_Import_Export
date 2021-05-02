@@ -106,7 +106,7 @@ d3.csv("./BOP/historical_BOP1.csv", function(data) {
     for(let i = 0; i < new_data_set.length; i++){
         circle_dataset.push(...new_data_set[i].values)
     }
-    console.log(circle_dataset)
+
     line_chart_ie.selectAll(".line")
         .data(new_data_set)
         .enter()

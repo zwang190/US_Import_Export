@@ -7,7 +7,6 @@ d3.csv("state_level_goods_bar_chart/export_tx.csv", function (data) {
     let tmp = -1;
 
     for(let i = 0; i < data.length; i++) {
-        console.log(data[i]['rank']);
         if(data[i]['rank'] == -1 || data[i]['rank'] == 0) {
             continue;
         }
@@ -25,7 +24,6 @@ d3.csv("state_level_goods_bar_chart/export_tx.csv", function (data) {
             break;
         }
     }
-    console.log(grand_data);
 
     const margins = {top: 40, bottom: 40, left: 60, right: 70}
     var width = 400;
@@ -53,8 +51,6 @@ d3.csv("state_level_goods_bar_chart/export_tx.csv", function (data) {
     y_labels.push(inner_list[1].val2018);
     y_labels.push(inner_list[2].val2019);
     y_labels.push(inner_list[3].val2020);
-
-    console.log(y_labels);
 
     var bar_color_scale =
         d3.scaleOrdinal(d3.schemeCategory10).domain(['2017', '2018', '2019', '2020']);
@@ -88,7 +84,6 @@ d3.csv("state_level_goods_bar_chart/export_tx.csv", function (data) {
 
     bar_chart.append('g')
         .call(y_axis);
-
 
     let hover_on = function(d) {
         d3.selectAll(".bar")

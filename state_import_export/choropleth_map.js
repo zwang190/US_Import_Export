@@ -1,5 +1,3 @@
-
-
 // Load in my states data!
 d3.csv("state_import_export/state_import_csv.csv", function(data) {
     var choropleth_map_width = 960;
@@ -12,7 +10,6 @@ d3.csv("state_import_export/state_import_csv.csv", function(data) {
     var projection = d3.geoAlbersUsa()
         .translate([choropleth_map_width / 2, choropleth_map_height / 2])
         .scale([1000]);
-
 
     var choropleth_map_path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
         .projection(projection); // tell path generator to use albersUsa projection
@@ -34,7 +31,7 @@ d3.csv("state_import_export/state_import_csv.csv", function(data) {
     for (var d = 0; d < data.length; d++) {
         dataArray.push(parseFloat(data[d]['Value_2017']))
     }
-    console.log(dataArray)
+
     var minVal = d3.min(dataArray)
     var maxVal = d3.max(dataArray)
     var ramp = d3.scaleLinear().domain([minVal,maxVal]).range([lowColor,highColor])

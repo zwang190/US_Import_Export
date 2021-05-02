@@ -54,15 +54,23 @@
 
 <div class="dropdown" id="dropdown_menu">
     <form>
-        Select city:
-        <select name="city" id="menu">
-            <option value="Aberdeen">Aberdeen</option>
-            <option value="Dundee">Dundee</option>
-            <option value="Edinburgh">Edinburgh</option>
-            <option value="Glasgow">Glasgow</option>
-            <option value="Inverness">Inverness</option>
-            <option value="Perth">Perth</option>
-            <option value="Stirling">Stirling</option>
+        Select a State:
+        <select name="state" id="menu">
+            <option value="CA">California</option>
+            <option value="TX">Texas</option>
+<!--            <option value="Edinburgh">Edinburgh</option>-->
+<!--            <option value="Glasgow">Glasgow</option>-->
+<!--            <option value="Inverness">Inverness</option>-->
+<!--            <option value="Perth">Perth</option>-->
+<!--            <option value="Stirling">Stirling</option>-->
+        </select>
+        <br>
+        <br>
+        <br>
+        Import or Export:
+        <select name="category" id="category_menu">
+            <option value="Import">Import</option>
+            <option value="Export">Export</option>
         </select>
     </form>
 
@@ -71,11 +79,21 @@
     <br>
     <div id="pie_chart">
         <script src="pie_chart/pie_chart.js"></script>
-        <svg width="900" height="900"></svg>
+
+        <div id="pie_chart_2017">
+            <svg width="900" height="900"></svg>
+        </div>
+        <div id="pie_chart_2018">
+            <svg width="900" height="900"></svg>
+        </div>
+        <div id="pie_chart_2019">
+            <svg width="900" height="900"></svg>
+        </div>
+        <div id="pie_chart_2020">
+            <svg width="900" height="900"></svg>
+        </div>
     </div>
 </div>
-
-
 
 <div id="bar_chart">
     <script src="state_level_goods_bar_chart/state_level_goods_export.js"></script>

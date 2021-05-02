@@ -10,8 +10,6 @@ d3.csv("national_import_export_five_categories_line_chart/Import_five_end_use.cs
         .key(function(d) { return d.Categories;})
         .entries(data);
 
-    console.log(sumstat);
-
     var svg = d3.select("body")
         .select("#line_chart2")
         .append("svg")
@@ -27,7 +25,6 @@ d3.csv("national_import_export_five_categories_line_chart/Import_five_end_use.cs
     svg.append("g")
         .attr("transform", "translate(0," + choropleth_map_height + ")")
         .call(d3.axisBottom(x).ticks(20));
-
 
     // Add Y axis
     var y = d3.scaleLinear()

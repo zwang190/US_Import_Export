@@ -24,13 +24,11 @@ d3.csv("National_import_export_end_use_heatmap/National_import_end_use_csv.csv",
             val2020: data[i].Value2020
         })
     }
-    console.log(data_array);
 
     data_array.sort(function (a, b) {
         return (b.val2011 + b.val2012 + b.val2013 + b.val2014 + b.val2015 + b.val2016 + b.val2017 + b.val2018 + b.val2019 + b.val2020) -
             (a.val2011 + a.val2012 + a.val2013 + a.val2014 + a.val2015 + a.val2016 + a.val2017 + a.val2018 + a.val2019 + a.val2020)
     })
-    console.log(data_array);
 
     grand_data = new Map();
     for (let i = 0; i < data_nums; i++) {
@@ -49,15 +47,12 @@ d3.csv("National_import_export_end_use_heatmap/National_import_end_use_csv.csv",
         grand_data.set(elem.name, inner_list);
     }
 
-    console.log(grand_data);
-
     data_array = []
     for (let category of grand_data.keys()) {
         y_labels.push(category);
         var inner_list = grand_data.get(category);
         data_array.push(...inner_list);
     }
-    console.log("data_array " + data_array);
 
     const margins = {top: 250, bottom: 40, left: 300, right: 0};
     var width = 900;
