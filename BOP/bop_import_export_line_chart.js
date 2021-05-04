@@ -46,13 +46,15 @@ d3.csv("./BOP/historical_BOP1.csv", function(data) {
         .range([ 0, width ]);
     line_chart_ie.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x).ticks(15));
+        .attr("class", "axis")
+        .call(d3.axisBottom(x).ticks(15).tickFormat(x => x));
 
     var y = d3.scaleLinear()
         .domain([0, d3.max(data, function(d) { return +d.Total; })])
         .range([ height, 0 ]);
     line_chart_ie.append("g")
-        .call(d3.axisLeft(y).ticks(30));
+        .attr("class", "axis")
+        .call(d3.axisLeft(y).ticks(5));
 
     var res = sumstat.map(function(d){ return d.key })
     var color = d3.scaleOrdinal()

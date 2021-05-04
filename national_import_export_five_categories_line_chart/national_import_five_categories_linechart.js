@@ -1,11 +1,13 @@
-let categories = ['Industrial Supplies', 'Capital Goods', 'Automotive Vehicles', 'Consumer Goods', 'Foods', 'Other Goods'];
 
-var margin = {top: 140, right: 50, bottom: 30, left: 150},
-    width = 1300 - margin.left - margin.right,
-    padding = 50;
-    choropleth_map_height = 600 - margin.top - margin.bottom;
 
 d3.csv("national_import_export_five_categories_line_chart/Import_five_end_use.csv", function (data) {
+    let categories = ['Industrial Supplies', 'Capital Goods', 'Automotive Vehicles', 'Consumer Goods', 'Foods', 'Other Goods'];
+
+    var margin = {top: 140, right: 50, bottom: 60, left: 150},
+        width = 1300 - margin.left - margin.right,
+        padding = 50;
+    var choropleth_map_height = 800 - margin.top - margin.bottom;
+
     var sumstat = d3.nest()
         .key(function(d) { return d.Categories;})
         .entries(data);
@@ -24,14 +26,16 @@ d3.csv("national_import_export_five_categories_line_chart/Import_five_end_use.cs
         .range([ 0, width ]);
     svg.append("g")
         .attr("transform", "translate(0," + choropleth_map_height + ")")
-        .call(d3.axisBottom(x).ticks(20));
+        .attr("class", "axis")
+        .call(d3.axisBottom(x).ticks(20).tickFormat(x => x));
 
     // Add Y axis
     var y = d3.scaleLinear()
         .domain([0, d3.max(data, function(d) { return + d.Value; })])
         .range([ choropleth_map_height, 0 ]);
     svg.append("g")
-        .call(d3.axisLeft(y).ticks(50));
+        .attr("class", "axis")
+        .call(d3.axisLeft(y).ticks(10));
 
     var res = sumstat.map(function(d){ return d.key }) // list of group names
     var color = d3.scaleOrdinal()
@@ -52,8 +56,8 @@ d3.csv("national_import_export_five_categories_line_chart/Import_five_end_use.cs
     var y_offset = 90;
     for (let i = 0; i < categories.length; i++) {
         var country = categories[i];
-        svg.append("text").attr("x", j * x_const + padding + offset).attr("y", y_const * k - y_offset).style("font-size", "12px").attr("alignment-baseline", "middle").text(country);
-        svg.append("circle").attr("cx", j * x_const + padding + offset - 15).attr("cy", y_const * k - y_offset).attr("r", 4).style("fill", color(country));
+        svg.append("text").attr("x", j * x_const + padding + offset).attr("y", y_const * k - y_offset).style("font-size", "15px").attr("alignment-baseline", "middle").text(country);
+        svg.append("circle").attr("cx", j * x_const + padding + offset - 15).attr("cy", y_const * k - y_offset).attr("r", 5).style("fill", color(country));
         k++;
         if (k === 4) {
             k = 1;
@@ -114,7 +118,7 @@ d3.csv("national_import_export_five_categories_line_chart/Import_five_end_use.cs
         .append("title")
         .text(function(d) { return d.Categories + ". Year: " + d.Period + "  Value: " + d3.format("$,")(d.Value); });
 
-    var ver_offset = 30;
+    var ver_offset = 40;
     svg.append("text")
         .attr('x',1280 - margin.left - margin.right)
         .attr("y", choropleth_map_height + ver_offset)

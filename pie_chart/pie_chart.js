@@ -37,7 +37,7 @@ function update_graph(){
 }
 
 function create_pie_chart(input_year, input_category, div) {
-    d3.csv("./pie_chart/ca_export_csv.csv", function (error, data) {
+    d3.csv("./pie_chart/state_import_export_items.csv", function (error, data) {
 
        var pie_svg = d3.select("body").select("#dropdown_menu").select("#pie_chart").select(div).append("svg");
        pie_svg.attr('width', 900)

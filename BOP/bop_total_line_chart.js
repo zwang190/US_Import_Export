@@ -37,13 +37,15 @@ d3.csv("BOP/historical_bop_total.csv", function(data) {
         .range([ 0, width ]);
     total_line_chart_svg.append("g")
         .attr("transform", "translate(0," + height / 2 + ")")
-        .call(d3.axisBottom(x).ticks(20));
+        .attr("class", "axis")
+        .call(d3.axisBottom(x).ticks(20).tickFormat(x => x));
 
     var y = d3.scaleLinear()
         .domain([0 - d3.max(data, function(d) { return Math.abs(+ d.Total); }), d3.max(data, function(d) { return Math.abs(+ d.Total); })])
         .range([ height, 0 ]);
     total_line_chart_svg.append("g")
-        .call(d3.axisLeft(y).ticks(30));
+        .attr("class", "axis")
+        .call(d3.axisLeft(y).ticks(15));
 
     var res = sumstat.map(function(d){ return d.key })
     var color = d3.scaleOrdinal()

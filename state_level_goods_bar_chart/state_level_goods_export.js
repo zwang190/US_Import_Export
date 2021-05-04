@@ -3,7 +3,7 @@ export {
 }
 
 function create_bar_chart(input_state, input_year, input_category, div, item_idx) {
-    d3.csv("pie_chart/ca_export_csv.csv", function (data) {
+    d3.csv("pie_chart/state_import_export_items.csv", function (data) {
         console.log("bar chart has bee changed")
         let grand_data = new Map()
         let x_labels = ['2017', '2018', '2019', '2020'];

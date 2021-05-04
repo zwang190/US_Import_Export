@@ -54,8 +54,8 @@ d3.csv("National_import_export_end_use_heatmap/National_import_end_use_csv.csv",
         data_array.push(...inner_list);
     }
 
-    const margins = {top: 250, bottom: 40, left: 300, right: 0};
-    var width = 900;
+    const margins = {top: 250, bottom: 40, left: 370, right: 0};
+    var width = 1000;
     var height = 400;
 
     var svg = d3.select('body')
@@ -87,25 +87,28 @@ d3.csv("National_import_export_end_use_heatmap/National_import_end_use_csv.csv",
     svg.append("g")
         .attr("class", "legend")
         .attr('font-size', '10px')
-        .attr('transform', 'translate(150,150)');
+        .attr('transform', 'translate(100,150)');
 
     var legend = d3.legendColor()
-        .shapeHeight(50)
-        .shapeWidth(50)
+        .shapeHeight(40)
+        .shapeWidth(70)
         .shape(90)
         .cells(15)
         .orient('horizontal')
         .scale(color_scale);
 
     svg.select(".legend")
-        .attr('transform', 'translate(350,150)')
+        .attr('transform', 'translate(300,150)')
+        .style("font-size", "12px")
         .call(legend);
 
     heatmap.append('g')
+        .attr("class", "axis")
         .call(y_axis);
 
     heatmap.append('g')
         .attr('transform', 'translate(0,' + height + ')')
+        .attr("class", "axis")
         .call(x_axis);
 
     svg.append("text")
@@ -161,7 +164,7 @@ d3.csv("National_import_export_end_use_heatmap/National_import_end_use_csv.csv",
         .text(function(d) { return "Year: " + d.year + " " + " Value: " + d3.format("$,")(d.value); });
 
     var ver_offset = 290;
-    var hor_offset = 260;
+    var hor_offset = 320;
     svg.append("text")
         .attr('x',width + hor_offset)
         .attr("y", height + ver_offset)
