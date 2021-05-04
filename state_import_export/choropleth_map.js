@@ -15,7 +15,7 @@ d3.csv("state_import_export/state_import_csv.csv", function(data) {
         .projection(projection); // tell path generator to use albersUsa projection
 
 //Create SVG element and append map to the SVG
-    var choropleth_map_svg = d3.select("body")
+    var choropleth_map_svg = d3.select("body").select("#choropleth_map")
         .select("div.state_map")
         .append("svg")
         .attr("width", choropleth_map_width)
@@ -103,7 +103,7 @@ d3.csv("state_import_export/state_import_csv.csv", function(data) {
         // add a legend
         var w = 140, h = 300;
 
-        var choropleth_map_key = d3.select("body").select("div.state_map")
+        var choropleth_map_key = d3.select("body").select("#choropleth_map").select("div.state_map")
             .append("svg")
             .attr("width", w)
             .attr("height", h)

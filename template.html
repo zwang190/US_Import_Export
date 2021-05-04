@@ -58,17 +58,15 @@
     </header>
 
     <div class="w3-panel">
-        <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-row-padding" style="margin:0 -10px">
             <div class="w3-third">
                 <h5>Regions</h5>
-                    <div class="state_map">
-                        <script src="state_import_export/choropleth_map.js"></script>
-                    </div>
-            </div>
 
+            </div>
         </div>
     </div>
     <hr>
+
     <div class="w3-container">
         <h5>General Stats</h5>
         <p>New Visitors</p>
@@ -98,158 +96,78 @@
             </div>
         </div>
 
+        <h5>General Stats</h5>
+        <p>New Visitors</p>
         <div class="w3-white">
-            <div class="dropdown" id="dropdown_menu">
-                <form>
-                    Select a State:
-                    <select name="state" id="menu">
-                        <option value="CA">California</option>
-                        <option value="TX">Texas</option>
-                        <option value="NY">New York</option>
-                        <option value="AZ">ARIZONA</option>
-                        <option value="AR">ARKANSAS</option>
-                        <option value="CT">CONNECTICUT</option>
-                        <option value="DE">DELAWARE</option>
-                        <option value="FL">Florida</option>
-                    </select>
-                    <br>
-                    <br>
-                    <br>
-                    Import or Export:
-                    <select name="category" id="category_menu">
-                        <option value="Import">Import</option>
-                        <option value="Export">Export</option>
-                    </select>
-                </form>
-
-                <br>
-                <br>
-                <br>
-                <div id="pie_chart">
-                    <script type="module" src="pie_chart/pie_chart.js"></script>
-
-                    <div id="pie_chart_2017">
-                        <svg width="900" height="900"></svg>
-                    </div>
-                    <div id="pie_chart_2018">
-                        <svg width="900" height="900"></svg>
-                    </div>
-                    <div id="pie_chart_2019">
-                        <svg width="900" height="900"></svg>
-                    </div>
-                    <div id="pie_chart_2020">
-                        <svg width="900" height="900"></svg>
-                    </div>
-                </div>
-
-                <div id="bar_chart">
-                    <script type="module" src="state_level_goods_bar_chart/state_level_goods_export.js"></script>
-                    <div id="bar_chart_2017"></div>
-                    <div id="bar_chart_2018"></div>
-                    <div id="bar_chart_2019"></div>
-                    <div id="bar_chart_2020"></div>
+            <div id="choropleth_map">
+                <div class="state_map">
+                    <script src="state_import_export/choropleth_map.js"></script>
                 </div>
             </div>
         </div>
-    </div>
-    <hr>
 
-    <div class="w3-container">
-        <h5>Countries</h5>
-        <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-            <tr>
-                <td>United States</td>
-                <td>65%</td>
-            </tr>
-            <tr>
-                <td>UK</td>
-                <td>15.7%</td>
-            </tr>
-            <tr>
-                <td>Russia</td>
-                <td>5.6%</td>
-            </tr>
-            <tr>
-                <td>Spain</td>
-                <td>2.1%</td>
-            </tr>
-            <tr>
-                <td>India</td>
-                <td>1.9%</td>
-            </tr>
-            <tr>
-                <td>France</td>
-                <td>1.5%</td>
-            </tr>
-        </table><br>
-        <button class="w3-button w3-dark-grey">More Countries  <i class="fa fa-arrow-right"></i></button>
-    </div>
-    <hr>
-    <div class="w3-container">
-        <h5>Recent Users</h5>
-        <ul class="w3-ul w3-card-4 w3-white">
-            <li class="w3-padding-16">
-                <img src="/w3images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-                <span class="w3-xlarge">Mike</span><br>
-            </li>
-            <li class="w3-padding-16">
-                <img src="/w3images/avatar5.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-                <span class="w3-xlarge">Jill</span><br>
-            </li>
-            <li class="w3-padding-16">
-                <img src="/w3images/avatar6.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-                <span class="w3-xlarge">Jane</span><br>
-            </li>
-        </ul>
-    </div>
-    <hr>
+        <h5>General Stats</h5>
+        <p>New Visitors</p>
+        <div class="w3-white">
+            <div class="w3-white">
+                <div class="dropdown" id="dropdown_menu">
+                    <form>
+                        Select a State:
+                        <select name="state" id="menu">
+                            <option value="CA">California</option>
+                            <option value="TX">Texas</option>
+                            <option value="NY">New York</option>
+                            <option value="AZ">ARIZONA</option>
+                            <option value="AR">ARKANSAS</option>
+                            <option value="CT">CONNECTICUT</option>
+                            <option value="DE">DELAWARE</option>
+                            <option value="FL">Florida</option>
+                        </select>
+                        <br>
+                        <br>
+                        <br>
+                        Import or Export:
+                        <select name="category" id="category_menu">
+                            <option value="Import">Import</option>
+                            <option value="Export">Export</option>
+                        </select>
+                    </form>
 
-    <div class="w3-container">
-        <h5>Recent Comments</h5>
-        <div class="w3-row">
-            <div class="w3-col m2 text-center">
-                <img class="w3-circle" src="/w3images/avatar3.png" style="width:96px;height:96px">
-            </div>
-            <div class="w3-col m10 w3-container">
-                <h4>John <span class="w3-opacity w3-medium">Sep 29, 2014, 9:12 PM</span></h4>
-                <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
+                    <br>
+                    <br>
+                    <br>
+                    <div id="pie_chart">
+                        <script type="module" src="pie_chart/pie_chart.js"></script>
+
+                        <div id="pie_chart_2017">
+                            <svg width="900" height="900"></svg>
+                        </div>
+                        <div id="pie_chart_2018">
+                            <svg width="900" height="900"></svg>
+                        </div>
+                        <div id="pie_chart_2019">
+                            <svg width="900" height="900"></svg>
+                        </div>
+                        <div id="pie_chart_2020">
+                            <svg width="900" height="900"></svg>
+                        </div>
+                    </div>
+
+                    <div id="bar_chart">
+                        <script type="module" src="state_level_goods_bar_chart/state_level_goods_export.js"></script>
+                        <div id="bar_chart_2017"></div>
+                        <div id="bar_chart_2018"></div>
+                        <div id="bar_chart_2019"></div>
+                        <div id="bar_chart_2020"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="w3-row">
-            <div class="w3-col m2 text-center">
-                <img class="w3-circle" src="/w3images/avatar1.png" style="width:96px;height:96px">
-            </div>
-            <div class="w3-col m10 w3-container">
-                <h4>Bo <span class="w3-opacity w3-medium">Sep 28, 2014, 10:15 PM</span></h4>
-                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
-            </div>
-        </div>
+
     </div>
-    <br>
-    <div class="w3-container w3-dark-grey w3-padding-32">
-        <div class="w3-row">
-            <div class="w3-container w3-third">
-                <h5 class="w3-bottombar w3-border-green">Demographic</h5>
-                <p>Language</p>
-                <p>Country</p>
-                <p>City</p>
-            </div>
-            <div class="w3-container w3-third">
-                <h5 class="w3-bottombar w3-border-red">System</h5>
-                <p>Browser</p>
-                <p>OS</p>
-                <p>More</p>
-            </div>
-            <div class="w3-container w3-third">
-                <h5 class="w3-bottombar w3-border-orange">Target</h5>
-                <p>Users</p>
-                <p>Active</p>
-                <p>Geo</p>
-                <p>Interests</p>
-            </div>
-        </div>
-    </div>
+    <hr>
+
 
     <!-- Footer -->
     <footer class="w3-container w3-padding-16 w3-light-grey">
