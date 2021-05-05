@@ -2,7 +2,7 @@ export {
     create_choropleth_map
 }
 
-function create_choropleth_map(path, title, year, div) {
+function create_choropleth_map(path, title, div) {
     d3.csv(path, function (data) {
         var choropleth_map_width = 960;
         var choropleth_map_height = 500;
