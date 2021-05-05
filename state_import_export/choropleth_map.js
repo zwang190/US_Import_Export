@@ -2,7 +2,7 @@ export {
     create_choropleth_map
 }
 
-function create_choropleth_map(path, title, div) {
+function create_choropleth_map(path, title, div, year) {
     d3.csv(path, function (data) {
         var choropleth_map_width = 960;
         var choropleth_map_height = 500;
@@ -31,8 +31,30 @@ function create_choropleth_map(path, title, div) {
             .attr('font-family', 'sans-serif');
 
         var dataArray = [];
+        var grand_data = new Map();
+
+        grand_data.set(2017, []);
+        grand_data.set(2018, []);
+        grand_data.set(2019, []);
+        grand_data.set(2020, []);
+
+        var inner_list;
         for (var d = 0; d < data.length; d++) {
-            dataArray.push(parseFloat(data[d]['Value_2017']))
+            inner_list = grand_data.get(2017);
+            inner_list.push({name: data[d]['State'], value: +data[d]['Value_2017']})
+
+            inner_list = grand_data.get(2018);
+            inner_list.push({name: data[d]['State'], value: +data[d]['Value_2018']})
+
+            inner_list = grand_data.get(2019);
+            inner_list.push({name: data[d]['State'], value: +data[d]['Value_2019']})
+
+            inner_list = grand_data.get(2020);
+            inner_list.push({name: data[d]['State'], value: +data[d]['Value_2020']})
+        }
+        inner_list = grand_data.get(parseInt(year));
+        for(let i = 0; i < inner_list.length; i++){
+            dataArray.push(inner_list[i].value);
         }
 
         var minVal = d3.min(dataArray)
@@ -40,9 +62,9 @@ function create_choropleth_map(path, title, div) {
         var ramp = d3.scaleLinear().domain([minVal, maxVal]).range([lowColor, highColor])
 
         d3.json("state_import_export/us-all.json", function (json) {
-            for (var i = 0; i < data.length; i++) {
-                var dataState = data[i].State;
-                var dataValue = data[i].Value_2017;
+            for (var i = 0; i < inner_list.length; i++) {
+                var dataState = inner_list[i].name;
+                var dataValue = inner_list[i].value;
 
                 for (var j = 0; j < json.features.length; j++) {
                     var jsonState = json.features[j].properties.name;
