@@ -51,13 +51,13 @@ d3.csv("national_import_export_five_categories_line_chart/Import_five_end_use.cs
     var k = 1;
     var j = 0;
     var y_const = 25;
-    var x_const = 150;
-    var offset = 400;
+    var x_const = 170;
+    var offset = 420;
     var y_offset = 90;
     for (let i = 0; i < categories.length; i++) {
         var country = categories[i];
-        svg.append("text").attr("x", j * x_const + padding + offset).attr("y", y_const * k - y_offset).style("font-size", "15px").attr("alignment-baseline", "middle").text(country);
-        svg.append("circle").attr("cx", j * x_const + padding + offset - 15).attr("cy", y_const * k - y_offset).attr("r", 5).style("fill", color(country));
+        svg.append("text").attr("x", j * x_const + padding + offset + 15).attr("y", y_const * k - y_offset).style("font-size", "15px").attr("alignment-baseline", "middle").text(country);
+        svg.append("circle").attr("cx", j * x_const + padding + offset).attr("cy", y_const * k - y_offset).attr("r", 5).style("fill", color(country));
         k++;
         if (k === 4) {
             k = 1;

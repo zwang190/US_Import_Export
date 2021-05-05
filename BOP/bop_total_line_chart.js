@@ -1,7 +1,7 @@
 d3.csv("BOP/historical_bop_total.csv", function(data) {
     const num_yaers = 40;
 
-    var margin = {top: 80, right: 30, bottom: 30, left: 60},
+    var margin = {top: 80, right: 30, bottom: 30, left: 110},
         width = 1200 - margin.left - margin.right,
         height = 800 - margin.top - margin.bottom;
 

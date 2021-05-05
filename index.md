@@ -16,7 +16,7 @@ This project is developed by Zirong Wang
 [Video Here](https://drive.google.com/file/d/1T3Ak1aBE4t9Y2mJ7pSdPAZ3brm0Ttwst/view?usp=sharing)
 
 ### Link
-[Main-Page](https://zwang190.github.io/us_import_export/main-page.html)
+[Main-Page](https://zwang190.github.io/us_import_export/template.html)
 
 -----------
 You can use the [editor on GitHub](https://github.com/zwang190/us_import_export/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
