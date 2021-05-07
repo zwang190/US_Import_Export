@@ -163,17 +163,7 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
                 var bar = [bar_width * i + 2, 0];
                 return 'translate(' + bar + ')';
             })
-            .attr('fill', function (d, i) {
-                if (i === 0) {
-                    return bar_color_scale('2017');
-                } else if (i === 1) {
-                    return bar_color_scale('2018');
-                } else if (i === 2) {
-                    return bar_color_scale('2019');
-                } else if (i === 3) {
-                    return bar_color_scale('2020');
-                }
-            })
+            .attr('fill', 'blue')
             .on("mouseover", hover_on)
             .on("mouseleave", hover_off)
             .append("title")
