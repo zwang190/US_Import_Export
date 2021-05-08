@@ -61,8 +61,8 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
 
         new_data = new_data.slice(0, 4);
 
-        const margins = {top: 40, bottom: 40, left: 60, right: 70}
-        var width = 250;
+        const margins = {top: 40, bottom: 40, left: 60, right: 300}
+        var width = 800;
         var height = 450;
         var bar_padding = 3;
         var bar_width = (width / 4);
@@ -75,11 +75,7 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
         var bar_chart = bar_svg.append('g')
             .attr('transform', 'translate(' + margins.right + ',' + margins.top + ')');
 
-        bar_svg.append("text")
-            .attr('x', 0)
-            .attr("y", 30)
-            .text("Money flow (millions of dollars)")
-            .attr('font-family', 'sans-serif');
+
 
         var elem = new_data[item_idx];
 
@@ -98,7 +94,7 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
             d3.scaleOrdinal(d3.schemeCategory10).domain(['2017', '2018', '2019', '2020']);
 
         var x_scale = d3.scaleBand()
-            .rangeRound([0, width])
+            .rangeRound([0, 200])
             .domain(x_labels);
 
         var y_scale = d3.scaleLinear()
@@ -155,7 +151,7 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
             .enter()
             .append('rect')
             .attr('x', function (d, i){
-                return x_scale(d.year)
+                return x_scale(d.year) + 3
             })
             .attr('y', function (d) {
                 return y_scale(d.value);
@@ -173,11 +169,17 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
             });
 
         var ver_offset = 60;
-        var hor_offset = 60;
+        var hor_offset = 490;
         bar_svg.append("text")
-            .attr('x', width + hor_offset)
+            .attr('x', hor_offset)
             .attr("y", height + ver_offset)
             .text("Year")
+            .attr('font-family', 'sans-serif');
+
+        bar_svg.append("text")
+            .attr('x', 0)
+            .attr("y", 30)
+            .text("Value (millions of dollars) " + input_category + " of " + new_data[item_idx].name + " from 2017 to 2020")
             .attr('font-family', 'sans-serif');
     })
 }
