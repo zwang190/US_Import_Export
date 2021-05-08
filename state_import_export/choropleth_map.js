@@ -2,7 +2,7 @@ export {
     create_choropleth_map
 }
 
-function create_choropleth_map(path, title, div, year) {
+function create_choropleth_map(path, title, main_div, div, year) {
     d3.csv(path, function (data) {
         var choropleth_map_width = 960;
         var choropleth_map_height = 500;
@@ -18,7 +18,7 @@ function create_choropleth_map(path, title, div, year) {
         var choropleth_map_path = d3.geoPath()
             .projection(projection);
 
-        var choropleth_map_svg = d3.select("body").select("#choropleth_map")
+        var choropleth_map_svg = d3.select("body").select(main_div)
             .select(div)
             .append("svg")
             .attr("width", choropleth_map_width)
@@ -58,7 +58,8 @@ function create_choropleth_map(path, title, div, year) {
         }
 
         var minVal = d3.min(dataArray)
-        var maxVal = d3.max(dataArray)
+        // var maxVal = d3.max(dataArray)
+        var maxVal = 300000;
         var ramp = d3.scaleLinear().domain([minVal, maxVal]).range([lowColor, highColor])
 
         d3.json("state_import_export/us-all.json", function (json) {
@@ -123,7 +124,7 @@ function create_choropleth_map(path, title, div, year) {
 
             var w = 140, h = 300;
 
-            var choropleth_map_key = d3.select("body").select("#choropleth_map").select(div)
+            var choropleth_map_key = d3.select("body").select(main_div).select(div)
                 .append("svg")
                 .attr("width", w)
                 .attr("height", h)
