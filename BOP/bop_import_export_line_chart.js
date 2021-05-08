@@ -86,8 +86,7 @@ d3.csv("./BOP/historical_BOP1.csv", function(data) {
         d3.select(this)
             .transition()
             .duration(200)
-            .style("stroke", "blue")
-            .style('stroke-width', '3px')
+            .style("fill", "blue");
     }
 
     let hover_off = function(d) {
@@ -98,7 +97,7 @@ d3.csv("./BOP/historical_BOP1.csv", function(data) {
         d3.select(this)
             .transition()
             .duration(200)
-            .style("stroke", function (d) {
+            .style("fill", function (d) {
                 return color(d.Category)
             })
     }
