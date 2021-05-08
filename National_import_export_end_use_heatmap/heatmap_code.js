@@ -120,6 +120,7 @@ function create_heat_map(path, threshold, title, div) {
         svg.append("text")
             .attr('x', 490)
             .attr("y", 130)
+            .style("font-size", '20px')
             .text(title)
             .attr('font-family', 'sans-serif');
 

@@ -2,7 +2,7 @@ export {
     create_line_chart
 }
 
-function create_line_chart(path, div) {
+function create_line_chart(path, div, title) {
     d3.csv(path, function (data) {
         let categories = ['Industrial Supplies', 'Capital Goods', 'Automotive Vehicles', 'Consumer Goods', 'Foods', 'Other Goods'];
 
@@ -142,6 +142,13 @@ function create_line_chart(path, div) {
             .attr('x', 1280 - margin.left - margin.right)
             .attr("y", choropleth_map_height + ver_offset)
             .text("Year")
+            .attr('font-family', 'sans-serif');
+
+        svg.append("text")
+            .attr('x', 440 - margin.left - margin.right)
+            .attr("y", -100)
+            .style("font-size", '20px')
+            .text(title)
             .attr('font-family', 'sans-serif');
 
     })

@@ -23,6 +23,7 @@ d3.csv("./BOP/historical_BOP1.csv", function(data) {
     line_chart_ie.append("text")
         .attr('x',400)
         .attr("y", -10)
+        .style("font-size", '20px')
         .text("National Balance of Payment (Import/Export)")
         .attr('font-family','sans-serif');
 

@@ -27,6 +27,7 @@ function create_choropleth_map(path, title, main_div, div, year) {
         choropleth_map_svg.append("text")
             .attr('x', 300)
             .attr("y", 20)
+            .style("font-size", '20px')
             .text(title)
             .attr('font-family', 'sans-serif');
 

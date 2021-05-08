@@ -24,6 +24,7 @@ d3.csv("BOP/historical_bop_total.csv", function(data) {
     total_line_chart_svg.append("text")
         .attr('x',400)
         .attr("y", -10)
+        .style("font-size", '20px')
         .text("Balance of Payments")
         .attr('font-family','sans-serif');
 
