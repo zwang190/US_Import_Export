@@ -50,7 +50,7 @@ function create_pie_chart(input_year, input_category, div) {
         var pie_g = pie_svg.append("g")
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-        var pie_color = d3.scaleOrdinal(['#4daf4a', '#377eb8', '#ff7f00', '#984ea3', '#e41a1c', '#0FCCCB']);
+        var pie_color = d3.scaleOrdinal(['#377eb8', '#4daf4a', '#984ea3', '#f781bf', '#ffff33', '#a65628']);
 
         var pie = d3.pie().value(function (d) {
             return d.share;
@@ -159,7 +159,7 @@ function create_pie_chart(input_year, input_category, div) {
             d3.select(this)
                 .transition()
                 .duration(200)
-                .style("fill", "yellow")
+                .style("fill", "#999999")
         }
 
         let hover_off = function (d) {

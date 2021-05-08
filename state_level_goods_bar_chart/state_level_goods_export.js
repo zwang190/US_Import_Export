@@ -7,8 +7,7 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
         console.log("bar chart has bee changed")
         let grand_data = new Map()
         let x_labels = ['2017', '2018', '2019', '2020'];
-        let y_labels = [];
-        let tmp = -1;
+        let new_dataset = [];
 
         for (let i = 0; i < data.length; i++) {
             var inner_map;
@@ -38,11 +37,9 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
             }
         }
 
-        console.log(grand_data)
         var new_data = [];
         inner_map = grand_data.get(input_state);
         inner_list = inner_map.get(input_category);
-        console.log(inner_list)
         for (let i = 0; i < inner_list.length; i++) {
             // new_data.push({name: inner_list[i].name, value: +inner_list[i].value2017})
             // if(input_year === '2017'){
@@ -63,12 +60,11 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
         });
 
         new_data = new_data.slice(0, 4);
-        console.log(new_data)
 
         const margins = {top: 40, bottom: 40, left: 60, right: 70}
-        var width = 400;
-        var height = 800;
-        var bar_padding = 7;
+        var width = 250;
+        var height = 450;
+        var bar_padding = 3;
         var bar_width = (width / 4);
 
         var bar_svg = d3.select('body').select("#dropdown_menu").select("#bar_chart").select(div)
@@ -87,6 +83,12 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
 
         var elem = new_data[item_idx];
 
+        new_dataset.push({year: '2017', value: elem.value2017});
+        new_dataset.push({year: '2018', value: elem.value2018});
+        new_dataset.push({year: '2019', value: elem.value2019});
+        new_dataset.push({year: '2020', value: elem.value2020});
+
+        var y_labels = [];
         y_labels.push(elem.value2017);
         y_labels.push(elem.value2018);
         y_labels.push(elem.value2019);
@@ -133,8 +135,8 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
             d3.select(this)
                 .transition()
                 .duration(200)
-                .style("stroke", "black")
-                .style('stroke-width', '3px')
+                .style("fill", "#c51b8a")
+
         }
 
         let hover_off = function (d, i) {
@@ -145,30 +147,29 @@ function create_bar_chart(input_state, input_year, input_category, div, item_idx
             d3.select(this)
                 .transition()
                 .duration(200)
-                .style("stroke", "white")
+                .style("fill", "#99d8c9")
         }
 
         bar_chart.selectAll('.bar')
-            .data(y_labels)
+            .data(new_dataset)
             .enter()
             .append('rect')
+            .attr('x', function (d, i){
+                return x_scale(d.year)
+            })
             .attr('y', function (d) {
-                return y_scale(d);
+                return y_scale(d.value);
             })
             .attr('width', x_scale.bandwidth() - bar_padding)
             .attr('height', function (d) {
-                return height - y_scale(d);
+                return height - y_scale(d.value);
             })
-            .attr('transform', function (d, i) {
-                var bar = [bar_width * i + 2, 0];
-                return 'translate(' + bar + ')';
-            })
-            .attr('fill', 'blue')
+            .attr('fill', '#99d8c9')
             .on("mouseover", hover_on)
             .on("mouseleave", hover_off)
             .append("title")
             .text(function (d) {
-                return d3.format("$,")(d);
+                return d3.format("$,")(d.value);
             });
 
         var ver_offset = 60;

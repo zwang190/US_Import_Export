@@ -88,7 +88,7 @@ function create_choropleth_map(path, title, div, year) {
                 d3.select(this)
                     .transition()
                     .duration(200)
-                    .style("stroke", "black")
+                    .style("fill", "#3182bd")
             }
 
             let hover_off = function (d) {
@@ -99,7 +99,9 @@ function create_choropleth_map(path, title, div, year) {
                 d3.select(this)
                     .transition()
                     .duration(200)
-                    .style("stroke", "white")
+                    .style("fill", function (d){
+                        return ramp(d.properties.value);
+                    })
             }
 
             choropleth_map_svg.selectAll("path")
@@ -111,7 +113,6 @@ function create_choropleth_map(path, title, div, year) {
                 .style("stroke-width", "1")
                 .on("mouseover", hover_on)
                 .on("mouseleave", hover_off)
-
                 .style("fill", function (d) {
                     return ramp(d.properties.value)
                 })
