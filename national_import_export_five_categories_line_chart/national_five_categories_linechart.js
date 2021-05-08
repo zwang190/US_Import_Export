@@ -100,13 +100,12 @@ function create_line_chart(path, div) {
         let hover_on = function (d) {
             d3.selectAll(".line")
                 .transition()
-                .duration(200)
+                .duration(200);
 
             d3.select(this)
                 .transition()
                 .duration(200)
-                .style("stroke", "blue")
-                .style('stroke-width', '3px')
+                .style("fill", "blue");
         }
 
         let hover_off = function (d) {
@@ -117,7 +116,7 @@ function create_line_chart(path, div) {
             d3.select(this)
                 .transition()
                 .duration(200)
-                .style("stroke", function (d) {
+                .style("fill", function (d) {
                     return color(d.Categories)
                 })
         }

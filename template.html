@@ -114,12 +114,23 @@
                 <div id="line_chart_import">
                     <script type="module" src="national_import_export_five_categories_line_chart/generate_line_chart_import.js"></script>
                 </div>
-                <p>This graph divides import at national level in to several end-use categories.</p>
+                <p>This graph divides import products at national level into several end-use categories. Being similar to 2008, the trading amount of those six categories in 2020 shows
+                recession except foods. Specifically, capital goods, consumer goods and other goods show a slight drop. However, industrial supplies and automotive vehicles were dropping dramatically.
+                When couple with graphic information and external studies, we can reach a conclusion that the global production was affected significantly and the general trend had hit a historical low point. According to Reuters,
+                    U.S. manufacturing activity plunges to 11-year low as orders sink (Reference: https://www.reuters.com/article/us-usa-economy/u-s-manufacturing-activity-plunges-to-11-year-low-as-orders-sink-idUSKBN22D5M0) and
+                    the graphic information has corroborate this conclusion.
+                </p>
 
 
                 <div id="line_chart_export">
                     <script type="module" src="national_import_export_five_categories_line_chart/generate_line_chart_export.js"></script>
                 </div>
+
+                <p>This line graph is illustrating trading amount of those several end-use categories in export activities. We can tell from the chart, the export activities show the similar with pattern
+                import activities. Other than foods category, the other five categories were declining simultaneously. Capital goods and industrial supplies were plunging. I would like to conclude that automobile, capital goods and
+                    industrial supplies can be seen as a whole. Due to the lockdown order, high unemployment rate and economic recession, consumption level was remaining at a low point, which
+                    is a major driven-force in low production subsequently. Meanwhile, the needs toward capital goods and logistic services are suppressed as well.
+                </p>
             </div>
         </div>
 
@@ -130,12 +141,12 @@
                     <script type="module" src="state_import_export/generate_choroplethmap_import_2020.js"></script>
                 </div>
 
-                <div class="state_map_export_2020">
-                    <script type="module" src="state_import_export/generate_choroplethmap_export_2020.js"></script>
-                </div>
-
                 <div class="state_map_import_2019">
                     <script type="module" src="state_import_export/generate_choropleth_map_import_2019.js"></script>
+                </div>
+
+                <div class="state_map_export_2020">
+                    <script type="module" src="state_import_export/generate_choroplethmap_export_2020.js"></script>
                 </div>
 
                 <div class="state_map_export_2019">
@@ -145,7 +156,9 @@
         </div>
 
         <h5>Import/Export Products Detail</h5>
-        <p>This section has been incorporated with interactive functions. Feel free to specify the type and the state.</p>
+        <p>This section has been incorporated with interactive functions. Feel free to specify the type and the state. The system will generate four pie charts and bar charts for
+        detail. The pie chart will illustrate proportion of 35 end-use categories at state level. In order to assure appropriate data density, the pie cahrts will display top 5 categories and
+        combine the rest as "other goods." In addition, the bar charts will present the trading value of top 4 categories over four years, covering from year 2017 to year 2020.</p>
         <div class="w3-white">
             <div class="w3-white">
                 <div class="dropdown" id="dropdown_menu">
