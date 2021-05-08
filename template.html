@@ -68,6 +68,11 @@
             <div id="my_dataviz_import_export_line">
                 <script src="./BOP/bop_import_export_line_chart.js"></script>
             </div>
+            <p>This line chart is about balance of payment of import and export respectively. As far as we can see, those two lines show a highly similar pattern in terms of values
+            over those years. The whole pattern shows a increasing trend other than 2001, 2008 and 2020. Obviously, the financial crisis in 2008 caused this significant drop.
+                In addition, the covid outbreak in 2020 also exerted similar effects on international trades due to economy downturn caused the lockdown orders issued by governments.
+                Also, since 2000, the money flow of import is always larger than it of export.
+            </p>
         </div>
 
         <p></p>
@@ -75,6 +80,8 @@
             <div id="my_dataviz_total">
                 <script src="./BOP/bop_total_line_chart.js"></script>
             </div>
+            <p>This chart illustrates status of total balance of payment. As far as can be seen from the chart, the value has been negative since 2000. This chart shows
+            the summary result of combined data from first line chart. Since 2000, the U.S. has been suffering international trade deficits. </p>
         </div>
 
         <p> Detail </p>
@@ -84,9 +91,20 @@
                     <script type="module" src="National_import_export_end_use_heatmap/generate_import_heatmap.js"></script>
                 </div>
 
+                <p>This graph shows ten end-use categories in terms of import activities. The covid has impacted the market significantly. Due to the economic downturn, a vast number of business activities have been suppressed.
+                Consequently, the logistic industry will be a major victim (reference: https://www.ttnews.com/articles/pandemic-exacts-heavy-financial-toll-trucking-companies).
+                    As far as we can see from this chart, all automobile and petroleum related items are declining, such as
+                "Passenger cars, new and used," "Crude oil," "Other parts and accessories of vehicles" and "Petroleum products" show a significant decline. On the contrary, because of
+                remote education and work from home order, the U.S. market shows a surge at computer need (Reference: https://www.wsj.com/articles/pc-demand-during-pandemic-drives-strongest-u-s-market-growth-in-a-decade-11602537956).
+                As a result, "Computer" and "Computer Accessories" are dramatically increasing.</p>
+
                 <div id="heat_map_export">
                     <script type="module" src="National_import_export_end_use_heatmap/generate_export_heatmap.js"></script>
                 </div>
+                <p>This graph sketches statistic information about ten end-use categories in terms of export activities. Due to the global recession, downturn in logistic industry
+                was not a sole issue in U.S. Based on other studies, the logistic industry was experiencing constant drop in 2020 (Reference: https://www.sdcexec.com/risk-compliance/press-release/21117361/agility-logistics-industry-expects-global-recession-in-2020),
+                which affected trading amount of certain products, such as "Civilian aircraft, engines, equipment, and parts," "Petroleum products, other", "Fuel oil," "Other parts and accessories of vehicles"
+                and "Passenger cars, new and used" in a negative way. Trading amount of those mentioned products has shown significant reduction. </p>
             </div>
         </div>
 
@@ -96,6 +114,8 @@
                 <div id="line_chart_import">
                     <script type="module" src="national_import_export_five_categories_line_chart/generate_line_chart_import.js"></script>
                 </div>
+                <p>This graph divides import at national level in to several end-use categories.</p>
+
 
                 <div id="line_chart_export">
                     <script type="module" src="national_import_export_five_categories_line_chart/generate_line_chart_export.js"></script>
