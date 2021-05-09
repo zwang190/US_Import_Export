@@ -87,13 +87,6 @@
         </div>
     </div>
     <hr>
-<!--    <div class="w3-container">-->
-<!--        <h5>Dashboard</h5>-->
-<!--    </div>-->
-<!--    <div class="w3-bar-block">-->
-<!--        <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>-->
-<!--        <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>-->
-<!--    </div>-->
 </nav>
 
 
@@ -139,15 +132,25 @@
         </div>
 
         <div class="w3-white">
-            <div id="monthly_chart">
-                <div class="monthly_chart_import">
-                    <script type="module" src="monthly_charts/generate_monthly_chart_import.js"></script>
-                </div>
-
-                <div class="monthly_chart_export">
-                    <script type="module" src="monthly_charts/generate_monthly_chart_export.js"></script>
+            <br>
+            <h2>Please specify the type for monthly information</h2>
+            <p>This graph has been embedded with annotation functions. Feel free to do dragging and hover to discover more information</p>
+            <div class="dropdown" id="dropdown_menu_monthly">
+                <form>
+                    Import or Export:
+                    <select name="category" id="category_menu_monthly">
+                        <option value="Import">Import</option>
+                        <option value="Export">Export</option>
+                    </select>
+                </form>
+                <div id="monthly_chart">
+                    <script type="module" src="monthly_charts/generate_monthly_chart.js"></script>
                 </div>
             </div>
+
+            <p> Those two charts illustrate trading value of each month in terms of import and export respectively covering from 01/2019 to 12/2020. As far as can be seen, the trading
+            value of import and export plunged at April, which was a direct result of lockdown order. The general trend remained at low point for several months until July as the local governments
+            gradually revoked the lockdown order and people started going back to work. The whole trend climbed and returned to previous status at December 2020.</p>
         </div>
 
         <p> Detail </p>

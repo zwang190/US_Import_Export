@@ -1,12 +1,12 @@
 "use strict";
 export {
-    create_monthly_line_cahrt
+    create_monthly_line_chart
 }
 
 // line chart code: https://bl.ocks.org/d3noob/402dd382a51a4f6eea487f9a35566de0
 // time series from: http://bl.ocks.org/mbostock/3883245
 // https://www.kaggle.com/shenba/time-series-datasets
-function create_monthly_line_cahrt(path, main_div, div) {
+function create_monthly_line_chart(path, main_div, flag) {
     d3.csv(path, function (error, data) {
         var margin = { top: 20, right: 20, bottom: 30, left: 50 },
             height = 500 - margin.top - margin.bottom;
@@ -20,16 +20,16 @@ function create_monthly_line_cahrt(path, main_div, div) {
         var valueline = d3.line().x(function (d) {
             return _x(d.date);
         }).y(function (d) {
-            return _y(d.IPG2211A2N);
+            return _y(d.trading_value);
         });
 
         if (error) throw error;
 
-        var svg = d3.select("body").select(main_div).select(div).append("svg").attr("width", 960).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var svg = d3.select("body").select(main_div).append("svg").attr("width", 960).attr("height", height + margin.top + margin.bottom).append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         data.forEach(function (d) {
             d.date = parseTime(d.Month);
-            d.IPG2211A2N = +d.Value;
+            d.trading_value = +d.Value;
         });
         console.log(data)
 
@@ -38,11 +38,11 @@ function create_monthly_line_cahrt(path, main_div, div) {
         }));
 
         var min_val = d3.min(data, function (d){
-            return d.IPG2211A2N;
+            return d.trading_value;
         })
 
         _y.domain([min_val, d3.max(data, function (d) {
-            return d.IPG2211A2N;
+            return d.trading_value;
         })]);
 
         svg.append("path").data([data]).attr("class", "line").attr("d", valueline);
@@ -51,36 +51,74 @@ function create_monthly_line_cahrt(path, main_div, div) {
 
         svg.append("g").call(d3.axisLeft(_y));
 
-        svg.append("text")
-            .attr('x',-40)
-            .attr("y", -5)
-            .text("Units:  Index 2012=100, Not Seasonally Adjusted")
-            .attr('font-family','sans-serif');
+
 
         var ver_offset = 25;
         svg.append("text")
             .attr('x',width)
             .attr("y", height + ver_offset)
-            .text("Year")
+            .text("Time")
             .attr('font-family','sans-serif');
 
-        var labels = [{
-            data: { date: "5/2020", IPG2211A2N: 89750.9},
-            dy: -20,
-            dx: -142,
-            subject: { text: 'A', y: "bottom" },
-            id: "minimize-badge"
-        }, {
-            data: { date: "12/2020", IPG2211A2N: 133230.6},
-            dy: 20,
-            dx: -142,
-            subject: { text: 'B', y: "bottom" },
-            id: "minimize-badge"
-        }].map(function (l) {
-            l.note = Object.assign({}, l.note, { title: "IPG2211A2N: " + l.data.IPG2211A2N,
-                label: "" + l.data.date });
-            return l;
-        });
+        svg.append("text")
+            .attr('x',-35)
+            .attr("y", -7)
+            .text("Millions of Dollars")
+            .attr('font-family','sans-serif');
+
+        var labels;
+        if(flag === 'i'){
+            labels = [{
+                data: { date: "5/2020", trading_value: 165774.3},
+                dy: -20,
+                dx: -142,
+                subject: { text: 'A', y: "bottom" },
+                id: "minimize-badge"
+            }, {
+                data: { date: "12/2020", trading_value: 216425.0},
+                dy: 20,
+                dx: -142,
+                subject: { text: 'B', y: "bottom" },
+                id: "minimize-badge"
+            }].map(function (l) {
+                l.note = Object.assign({}, l.note, { title: "Trading Value: " + l.data.trading_value,
+                    label: "" + l.data.date });
+                return l;
+            });
+
+            svg.append("text")
+                .attr('x',140)
+                .attr("y", -5)
+                .text("Monthly Trading Value of U.S. Import")
+                .style("font-size", '20px')
+                .attr('font-family','sans-serif');
+
+        } else {
+            labels = [{
+                data: { date: "5/2020", trading_value: 89750.9},
+                dy: -20,
+                dx: -142,
+                subject: { text: 'A', y: "bottom" },
+                id: "minimize-badge"
+            }, {
+                data: { date: "12/2020", trading_value: 133230.6},
+                dy: 20,
+                dx: -142,
+                subject: { text: 'B', y: "bottom" },
+                id: "minimize-badge"
+            }].map(function (l) {
+                l.note = Object.assign({}, l.note, { title: "Trading Value: " + l.data.trading_value,
+                    label: "" + l.data.date });
+                return l;
+            });
+
+            svg.append("text")
+                .attr('x',140)
+                .attr("y", -5)
+                .text("Monthly Trading Value of U.S. Export")
+                .style("font-size", '20px')
+                .attr('font-family','sans-serif');
+        }
 
         var resize = [{
             subject: {
@@ -98,19 +136,19 @@ function create_monthly_line_cahrt(path, main_div, div) {
             }
         }];
 
-        var timeFormat = d3.timeFormat("%d-%b-%y");
+        var timeFormat = d3.timeFormat("%b-%y");
 
         window.makeAnnotations = d3.annotation().annotations(labels).type(d3.annotationCalloutElbow).accessors({ x: function x(d) {
                 return _x(parseTime(d.date));
             },
             y: function y(d) {
-                return _y(d.IPG2211A2N);
+                return _y(d.trading_value);
             }
         }).accessorsInverse({
             date: function date(d) {
                 return timeFormat(_x.invert(d.x));
             },
-            IPG2211A2N: function IPG2211A2N(d) {
+            trading_value: function trading_value(d) {
                 return _y.invert(d.y);
             }
         }).on('subjectover', function (annotation) {
