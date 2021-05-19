@@ -2,6 +2,14 @@ export {
     create_choropleth_map
 }
 
+/**
+ * This is the generalized method which produces the choropleth map graph.
+ * @param path: path to the input file
+ * @param title: title of the graph
+ * @param main_div: the primary div
+ * @param div: the secondary div
+ * @param year: year of the graph
+ */
 function create_choropleth_map(path, title, main_div, div, year) {
     d3.csv(path, function (data) {
         var choropleth_map_width = 960;
@@ -9,7 +17,6 @@ function create_choropleth_map(path, title, main_div, div, year) {
 
         var lowColor = 'lightgrey'
         var highColor = '#bc2a66'
-
 
         var projection = d3.geoAlbersUsa()
             .translate([choropleth_map_width / 2, choropleth_map_height / 2])
@@ -59,7 +66,6 @@ function create_choropleth_map(path, title, main_div, div, year) {
         }
 
         var minVal = d3.min(dataArray)
-        // var maxVal = d3.max(dataArray)
         var maxVal = 300000;
         var ramp = d3.scaleLinear().domain([minVal, maxVal]).range([lowColor, highColor])
 

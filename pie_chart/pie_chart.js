@@ -14,6 +14,9 @@ d3.select('#dropdown_menu').select("#category_menu")
         update_graph();
     });
 
+/**
+ * This script updates bar and pie charts dynamically.
+ */
 function update_graph(){
     d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2017").select("svg").remove();
     d3.select("body").select("#dropdown_menu").select("#pie_chart").select("#pie_chart_2018").select("svg").remove();
@@ -36,6 +39,12 @@ function update_graph(){
     create_bar_chart(default_state, "2020", default_category, "#bar_chart_2020", 3);
 }
 
+/**
+ * This is the method which creates pie charts.
+ * @param input_year: specified year from user input
+ * @param input_category: specified category from user
+ * @param div: primary div
+ */
 function create_pie_chart(input_year, input_category, div) {
     d3.csv("./pie_chart/state_import_export_items.csv", function (error, data) {
 

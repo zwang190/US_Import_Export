@@ -2,6 +2,14 @@ export {
     create_bar_chart
 }
 
+/**
+ * This method produces the bar charts
+ * @param input_state: specified state from user input
+ * @param input_year: specified year from user input
+ * @param input_category: category (import or export) from user input
+ * @param div: primary div
+ * @param item_idx: the index of the item in the data array
+ */
 function create_bar_chart(input_state, input_year, input_category, div, item_idx) {
     d3.csv("pie_chart/state_import_export_items.csv", function (data) {
         console.log("bar chart has bee changed")

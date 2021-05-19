@@ -2,6 +2,13 @@ export {
     create_heat_map
 }
 
+/**
+ * This is the method which generates heatmap
+ * @param path: path to the input file
+ * @param threshold: defined threshold for the color scale in order to make comparisons across different graphs
+ * @param title: title of the graph
+ * @param div: primary div
+ */
 function create_heat_map(path, threshold, title, div) {
     d3.csv(path, function (data) {
         let grand_data;

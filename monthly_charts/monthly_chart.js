@@ -5,7 +5,13 @@ export {
 
 // line chart code: https://bl.ocks.org/d3noob/402dd382a51a4f6eea487f9a35566de0
 // time series from: http://bl.ocks.org/mbostock/3883245
-// https://www.kaggle.com/shenba/time-series-datasets
+
+/**
+ * This is the method generating monthly value line chart with annotation
+ * @param path: path to the input file
+ * @param main_div: primary div
+ * @param flag: import or export
+ */
 function create_monthly_line_chart(path, main_div, flag) {
     d3.csv(path, function (error, data) {
         var margin = { top: 20, right: 20, bottom: 30, left: 50 },
