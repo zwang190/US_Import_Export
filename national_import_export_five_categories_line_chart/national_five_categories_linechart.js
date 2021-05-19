@@ -2,6 +2,12 @@ export {
     create_line_chart
 }
 
+/**
+ * This method will create the line charts
+ * @param path: path to the input file
+ * @param div: primary div
+ * @param title: title of the graph
+ */
 function create_line_chart(path, div, title) {
     d3.csv(path, function (data) {
         let categories = ['Industrial Supplies', 'Capital Goods', 'Automotive Vehicles', 'Consumer Goods', 'Foods', 'Other Goods'];

@@ -1,3 +1,7 @@
+/**
+ * This script will generate the multi-line chart for import/export
+ */
+
 d3.csv("./BOP/historical_BOP1.csv", function(data) {
     var margin = {top: 100, right: 30, bottom: 30, left: 90},
         width = 1200 - margin.left - margin.right,

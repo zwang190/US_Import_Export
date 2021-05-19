@@ -1,3 +1,7 @@
+/**
+ * This script will produce the line chart for total balance of payment.
+ */
+
 d3.csv("BOP/historical_bop_total.csv", function(data) {
     const num_yaers = 40;
 
